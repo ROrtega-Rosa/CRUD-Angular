@@ -1,0 +1,86 @@
+<div class="shadow border p-4">
+    @if(editProductId){
+      <h2  class="text-xl font-semibold">Editar Producto</h2>
+    }@else{
+      <h2  class="text-xl font-semibold">Nuevo Producto</h2>
+    }
+    <form [formGroup]="productsForm">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre</label>
+        <input 
+        type="text" 
+        class="form-control"
+         id="name" 
+         formControlName="name"
+         [ngClass]="{'is-invalid': productsForm.get('name')?.invalid && productsForm.get('name')?.touched}"
+         />
+         <div *ngIf="productsForm.get('name')?.invalid && productsForm.get('name')?.touched" class="text-danger">
+          El nombre es obligatorio.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="mark" class="form-label">Marca</label>
+        <input
+          type="text"
+          class="form-control"
+          id="mark"
+          formControlName="mark"
+          [ngClass]="{'is-invalid': productsForm.get('mark')?.invalid && productsForm.get('mark')?.touched}"
+        />
+        <div *ngIf="productsForm.get('mark')?.invalid && productsForm.get('mark')?.touched" class="text-danger">
+          La marca es obligatoria.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="typeProduct" class="form-label">tipo de producto</label>
+        <input 
+        type="text" 
+        class="form-control" 
+        id="typeProduct" 
+        formControlName="typeProduct"
+        [ngClass]="{'is-invalid': productsForm.get('typeProduct')?.invalid && productsForm.get('typeProduct')?.touched}"
+        />
+      </div>
+      <div *ngIf="productsForm.get('typeProduct')?.invalid && productsForm.get('typeProduct')?.touched" class="text-danger">
+          El tipo de producto es obligatorio.
+      </div>
+
+
+      <div class="mb-3">
+        <label for="date" class="form-label">Fecha de caducidad</label>
+        <input 
+        type="date" 
+        class="form-control" 
+        id="date" 
+        formControlName="date"
+        [ngClass]="{'is-invalid': productsForm.get('date')?.invalid && productsForm.get('date')?.touched}"
+        />
+      </div>
+      <div *ngIf="productsForm.get('date')?.invalid && productsForm.get('date')?.touched" class="text-danger">
+          La fecha de caducidad es oblicatoria.
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Descripción</label>
+        <textarea 
+        type="text" 
+        class="form-control" 
+        id="description" 
+        formControlName="description"
+        [ngClass]="{'is-invalid': productsForm.get('description')?.invalid && productsForm.get('description')?.touched}"
+        ></textarea>
+      </div>
+      <div *ngIf="productsForm.get('description')?.invalid && productsForm.get('description')?.touched" class="text-danger">
+          La descripcion es obligatoria.
+      </div>
+      <div>
+        @if(editProductId){
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="updateProduct()">Editar</button>
+        }@else{
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="addProduct()">Enviar</button>
+        }
+         
+      </div>
+    </form>
+  </div>
+  
